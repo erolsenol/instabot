@@ -12,7 +12,6 @@ const instagram = {
             devtools: true
         });
         instagram.page = await instagram.browser.newPage();
-
     },
 
 login: async(username, password) =>{
@@ -22,13 +21,12 @@ login: async(username, password) =>{
 
     // await loginButton[0].click();
 
-    await instagram.page.waitForNavigation({waitUntil: 'networkidle2'});
-    console.log("asd");
+    // await instagram.page.waitForNavigation({waitUntil: 'networkidle2'});
 
     await instagram.page.waitFor(1000);
     await instagram.page.type('input[name="username"]',username, {delay:50});
     await instagram.page.type('input[name="password"]',password, {delay:50});
-    debugger;
+
 }
 }
 
