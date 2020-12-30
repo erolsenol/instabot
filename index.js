@@ -7,8 +7,8 @@ const ig = require('./instagram');
 
     console.log("started");
 
-    await ig.login('erolsnlpoke@gmail.com','pistols987');
+    await ig.login('erolsnlpoke@gmail.com','Pistols987');
 
-    debugger;
+    await ig.search('vidcg');
 
 })();
