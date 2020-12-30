@@ -1,16 +1,14 @@
 
 const ig = require('./instagram');
 
-console.log("started");
-
 (async ()=> {
 
     await ig.initialize();
 
-    console.log("asd");
+    console.log("started");
 
     await ig.login('erolsnlpoke@gmail.com','pistols987');
-    
+
     debugger;
 
 })();
