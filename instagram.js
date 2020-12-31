@@ -30,37 +30,32 @@ login: async(username, password) =>{
     await instagram.page.keyboard.press('Enter');
     await instagram.page.waitFor(4000);
     await instagram.page.click('section>div>button')[1];
-    await instagram.page.waitFor(4000);
+    await instagram.page.waitFor(3000);
     await instagram.page.click('div>button')[0];
     await instagram.page.waitFor(1000);
 
 },
 search: async(searchName)=>{
-   // await instagram.page.waitFor(1500);
     const url ="https://www.instagram.com/"+searchName+"/";
     await instagram.page.goto(url, {waitUntil: 'networkidle2'});
-    // Not Found
-    // await instagram.page.waitFor(500);
-    // let follow = await instagram.page.$$('li>a>span');
 
     const followingStr = await instagram.page.$eval('ul', el => el.innerHTML);
-
 
     const followingDom = new JSDOM(followingStr); // TODO: add jsdom npm package and convert to dom
 
     debugger;
-    console.log(followingDom.window.document.body.firstChild.firstChild.firstChild.innerHTML);
-   // console.log(followingDom.firsChild.firsChild.firsChild.innerText);
-   // console.log(followingDom.children[1].firsChild.firsChild.getAttribute("title"));
-   // console.log(followingDom.children[2].firsChild.firsChild.innerText);
+    let posts, followers, following;
+    posts = followingDom.window.document.body.firstChild.firstChild.firstChild.innerHTML;
+    followers = parseFloat(followingDom.window.document.body.children[1].firstChild.firstChild.getAttribute("title").replace(/,/g, ''));
+    following = followingDom.window.document.body.children[2].firstChild.firstChild.innerHTML;
+    console.log(posts);
+    console.log(followers);
+    console.log(following);
 
-    // await instagram.page.waitFor(1000);
-    // console.log(follow[0]);
-    // console.log(follow[1]);
-    // console.log(follow[2]);
     //await instagram.page.$x('div > input[placeholder="Search"]',searchName, {delay:50});
     //await instagram.page.type('div > input',searchName, {delay:50});
+},
 }
-}
+
 
 module.exports = instagram;
