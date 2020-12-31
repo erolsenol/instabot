@@ -1,33 +1,32 @@
-const puppeteer = require('puppeteer');
 const jsdom = require("jsdom");
+const puppeteer = require("puppeteer");
 
 const { JSDOM } = jsdom;
 
-
-const BASE_URL = 'https://www.instagram.com/'
+const BASE_URL = "https://www.instagram.com/";
 
 const instagram = {
-    browser:null,
-    page: null,
+  browser: null,
+  page: null,
 
-    initialize: async () => {
-        instagram.browser = await puppeteer.launch({
-            headless: false,
-            devtools: true
-        });
-        instagram.page = await instagram.browser.newPage();
-    },
+  initialize: async () => {
+    instagram.browser = await puppeteer.launch({
+      headless: false,
+      devtools: true
+    });
+    instagram.page = await instagram.browser.newPage();
+  },
 
-login: async(username, password) =>{
-    await instagram.page.goto(BASE_URL, {waitUntil: 'networkidle2'});
+  login: async (username, password) => {
+    await instagram.page.goto(BASE_URL, { waitUntil: "networkidle2" });
 
     // await instagram.page.waitForNavigation({waitUntil: 'networkidle2'});
 
-    await instagram.page.type('input[name="username"]',username, {delay: 15});
-    await instagram.page.type('input[name="password"]',password, {delay: 15});
+    await instagram.page.type('input[name="username"]', username, { delay: 15 });
+    await instagram.page.type('input[name="password"]', password, { delay: 15 });
     await instagram.page.waitFor(250);
-   // let loginButton = await instagram.page.$x('//div[contains(text(), "Log In")]');
-    await instagram.page.keyboard.press('Enter');
+    // let loginButton = await instagram.page.$x('//div[contains(text(), "Log In")]');
+    await instagram.page.keyboard.press("Enter");
     await instagram.page.waitFor(4000);
     await instagram.page.click('section>div>button')[1];
     await instagram.page.waitFor(3000);
