@@ -31,12 +31,19 @@ search: async(searchName)=>{
     const url ="https://www.instagram.com/"+searchName+"/";
     await instagram.page.goto(url, {waitUntil: 'networkidle2'});
     // Not Found
-    await instagram.page.waitFor(500);
-    let follow = await instagram.page.$$('li>a>span');
-    await instagram.page.waitFor(1000);
-    console.log(follow[0]);
-    console.log(follow[1]);
-    console.log(follow[2]);
+    // await instagram.page.waitFor(500);
+    // let follow = await instagram.page.$$('li>a>span');
+
+    const followingStr = await instagram.page.$eval('ul', el => el.innerHTML);
+
+    const followingDom = ""; // TODO: add jsdom npm package and convert to dom
+
+    console.log(followingStr);
+
+    // await instagram.page.waitFor(1000);
+    // console.log(follow[0]);
+    // console.log(follow[1]);
+    // console.log(follow[2]);
     //await instagram.page.$x('div > input[placeholder="Search"]',searchName, {delay:50});
     //await instagram.page.type('div > input',searchName, {delay:50});
 }
