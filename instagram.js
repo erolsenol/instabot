@@ -23,12 +23,16 @@ login: async(username, password) =>{
 
     // await instagram.page.waitForNavigation({waitUntil: 'networkidle2'});
 
-    await instagram.page.type('input[name="username"]',username, {delay: 50});
-    await instagram.page.type('input[name="password"]',password, {delay: 50});
+    await instagram.page.type('input[name="username"]',username, {delay: 15});
+    await instagram.page.type('input[name="password"]',password, {delay: 15});
     await instagram.page.waitFor(250);
    // let loginButton = await instagram.page.$x('//div[contains(text(), "Log In")]');
-   // await loginButton[0].elementHandle.click();
-   await instagram.page.click('form>div>div>button');
+    await instagram.page.keyboard.press('Enter');
+    await instagram.page.waitFor(4000);
+    await instagram.page.click('section>div>button')[1];
+    await instagram.page.waitFor(4000);
+    await instagram.page.click('div>button')[0];
+    await instagram.page.waitFor(1000);
 
 },
 search: async(searchName)=>{
@@ -44,7 +48,7 @@ search: async(searchName)=>{
 
     const followingDom = new JSDOM(followingStr); // TODO: add jsdom npm package and convert to dom
 
-    console.log(followingDom.window.document.body.firsChild.firsChild.firsChild.innerText);
+    console.log(followingDom.window.document.firsChild.firsChild.firsChild.innerText);
    // console.log(followingDom.firsChild.firsChild.firsChild.innerText);
    // console.log(followingDom.children[1].firsChild.firsChild.getAttribute("title"));
    // console.log(followingDom.children[2].firsChild.firsChild.innerText);
