@@ -48,7 +48,8 @@ search: async(searchName)=>{
 
     const followingDom = new JSDOM(followingStr); // TODO: add jsdom npm package and convert to dom
 
-    console.log(followingDom.window.document.firsChild.firsChild.firsChild.innerText);
+    debugger;
+    console.log(followingDom.window.document.body.firstChild.firstChild.firstChild.innerHTML);
    // console.log(followingDom.firsChild.firsChild.firsChild.innerText);
    // console.log(followingDom.children[1].firsChild.firsChild.getAttribute("title"));
    // console.log(followingDom.children[2].firsChild.firsChild.innerText);
