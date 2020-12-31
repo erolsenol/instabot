@@ -1,4 +1,8 @@
 const puppeteer = require('puppeteer');
+const jsdom = require("jsdom");
+
+const { JSDOM } = jsdom;
+
 
 const BASE_URL = 'https://www.instagram.com/'
 
@@ -19,8 +23,8 @@ login: async(username, password) =>{
 
     // await instagram.page.waitForNavigation({waitUntil: 'networkidle2'});
 
-    await instagram.page.type('input[name="username"]',username, {delay:20});
-    await instagram.page.type('input[name="password"]',password, {delay:20});
+    await instagram.page.type('input[name="username"]',username, {delay: 50});
+    await instagram.page.type('input[name="password"]',password, {delay: 50});
     await instagram.page.waitFor(250);
    // let loginButton = await instagram.page.$x('//div[contains(text(), "Log In")]');
    // await loginButton[0].elementHandle.click();
@@ -37,11 +41,10 @@ search: async(searchName)=>{
 
     const followingStr = await instagram.page.$eval('ul', el => el.innerHTML);
 
-    const jsdom = require("jsdom").JSDOM;
 
-    const followingDom = new jsdom(followingStr); // TODO: add jsdom npm package and convert to dom
+    const followingDom = new JSDOM(followingStr); // TODO: add jsdom npm package and convert to dom
 
-    console.log(followingDom);
+    console.log(followingDom.window.document.body.firsChild.firsChild.firsChild.innerText);
    // console.log(followingDom.firsChild.firsChild.firsChild.innerText);
    // console.log(followingDom.children[1].firsChild.firsChild.getAttribute("title"));
    // console.log(followingDom.children[2].firsChild.firsChild.innerText);
