@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 2017
+    ecmaVersion: 2017,
+    sourceType: "module"
   },
   plugins: ["eslint-plugin-import", "prettier"],
   extends: ["prettier"],

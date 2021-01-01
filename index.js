@@ -1,15 +1,29 @@
-const ig = require("./instagram");
+import puppeteer from "puppeteer";
 
-(async ()=> {
-    
-    await ig.initialize();
-   
-    console.log("started");
+import Instagram from "./instagram.js";
 
-    await ig.login('erolsnlpoke@gmail.com','Pistols987');
+let browser = null;
+let page = null;
 
-   // await ig.search('vidcg');
+async function launchBrowser() {
+  browser = await puppeteer.launch({
+    headless: false,
+    devtools: true
+  });
 
-   await ig.searchUser("ro");
+  page = await browser.newPage();
+}
 
+(async () => {
+  console.log("started");
+
+  await launchBrowser();
+
+  const ig = new Instagram(browser, page);
+
+  await ig.login("erolsnlpoke@gmail.com", "Pistols987");
+
+  // await ig.search('vidcg');
+
+  await ig.searchUsers("ro");
 })();
