@@ -63,7 +63,7 @@ searchUser: async(searchString) => {
       const text = await response.text();
       const js = await JSON.parse(text);
      
-       console.log(js);
+       console.log(js.users[user]);
 
     }catch (err){
       console.error('Failer getting data from: ${url}');
