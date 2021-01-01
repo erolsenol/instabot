@@ -8,6 +8,8 @@ const ig = require("./instagram");
 
     await ig.login('erolsnlpoke@gmail.com','Pistols987');
 
-    await ig.search('vidcg');
+   // await ig.search('vidcg');
+
+   await ig.searchUser("ro");
 
 })();
